@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>이정소 · 서비스기획 포트폴리오</title>
-<meta name="description" content="6년차 서비스기획자 이정소 — PG·결제·정산 시스템과 AML/KYC 금융규제 대응을 0→1로 설계해온 서비스기획 PM. NHN KCP 재직.">
-<meta name="keywords" content="이정소,서비스기획,NHN KCP,PG,AML,KYC,결제 정산,핀테크,서비스기획 포트폴리오">
+<meta name="description" content="서비스기획자 이정소 — 상점관리자·파트너관리자 등 결제 운영 시스템을 중심으로 결제·정산·고객인증 서비스를 기획합니다. NHN KCP 재직, 경력 5년(6년차).">
+<meta name="keywords" content="이정소,서비스기획,NHN KCP,PG,AML,결제 정산,인증,핀테크,서비스기획 포트폴리오">
 <meta property="og:type" content="website">
 <meta property="og:title" content="이정소 · 서비스기획 포트폴리오">
-<meta property="og:description" content="PG·결제·정산 시스템과 AML/KYC 금융규제 대응을 설계해온 6년차 서비스기획 PM.">
+<meta property="og:description" content="상점관리자·파트너관리자 중심으로 결제·정산·고객인증을 기획하는 5년차 서비스기획자.">
 <meta property="og:locale" content="ko_KR">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,6 +98,27 @@ nav.scrolled{border-bottom:1px solid var(--line)}
   -webkit-mask-image:radial-gradient(ellipse 80% 60% at 70% 20%,#000 10%,transparent 70%);
 }
 .hero-in{position:relative;z-index:1}
+
+/* floating decorative graphic — fills the top-right empty space */
+.hero-deco{position:absolute;top:-60px;right:0;width:420px;height:440px;z-index:0;pointer-events:none}
+@media(max-width:980px){.hero-deco{display:none}}
+.hero-deco .ring{position:absolute;border-radius:50%;border:1px solid var(--line)}
+.hero-deco .r1{width:320px;height:320px;top:60px;right:20px;border-color:rgba(198,244,50,.18)}
+.hero-deco .r2{width:210px;height:210px;top:115px;right:75px;border-color:var(--line)}
+.hero-deco .r3{width:110px;height:110px;top:165px;right:125px;border-color:rgba(61,219,217,.25)}
+.hero-deco .blip{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--lime);box-shadow:0 0 16px var(--lime);top:75px;right:175px;animation:float1 6s ease-in-out infinite}
+.hero-deco .blip2{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);top:300px;right:70px;animation:float2 7s ease-in-out infinite}
+.hero-deco .chip{
+  position:absolute;background:var(--ink-2);border:1px solid var(--line);border-radius:11px;
+  padding:11px 15px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mist-2);
+  box-shadow:0 12px 30px -12px rgba(0,0,0,.5);white-space:nowrap;
+}
+.hero-deco .chip .k{color:var(--lime)}
+.hero-deco .chip1{top:135px;right:115px;animation:float1 8s ease-in-out infinite}
+.hero-deco .chip2{top:290px;right:120px;animation:float2 9s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@media(prefers-reduced-motion:reduce){.hero-deco .blip,.hero-deco .blip2,.hero-deco .chip1,.hero-deco .chip2{animation:none}}
 .hero-status{
   display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono';
   font-size:12.5px;color:var(--mist-2);border:1px solid var(--line);
@@ -205,6 +226,55 @@ footer{border-top:1px solid var(--line);padding:36px 0}
 .foot-in{max-width:var(--maxw);margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .foot-in span{font-size:13px;color:var(--mist)}
 
+/* ---- Project detail accordion ---- */
+.proj-wrap{border-top:1px solid var(--line)}
+.proj-wrap:last-of-type{border-bottom:1px solid var(--line)}
+.proj-wrap .proj{border-top:none}
+.proj-wrap:last-of-type .proj{border-bottom:none}
+.detail-toggle{
+  grid-column:2 / 3;display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Grotesk','IBM Plex Sans KR',sans-serif;font-size:14px;font-weight:600;
+  color:var(--lime);letter-spacing:-.01em;
+  background:rgba(198,244,50,.04);border:1px solid var(--line);border-radius:10px;
+  padding:11px 20px;margin-top:10px;cursor:pointer;transition:.22s;width:fit-content;
+}
+.detail-toggle:hover{border-color:var(--lime);background:rgba(198,244,50,.1);transform:translateY(-1px)}
+.detail-toggle .arr{transition:transform .3s;display:inline-block;font-size:12px}
+.detail-toggle[aria-expanded="true"] .arr{transform:rotate(90deg)}
+@media(max-width:860px){.detail-toggle{grid-column:1 / -1}}
+.detail-panel{
+  grid-column:1 / -1;overflow:hidden;max-height:0;
+  transition:max-height .45s cubic-bezier(.2,.7,.2,1);
+}
+.detail-panel.open{max-height:30000px}
+.detail-inner{padding:14px 0 40px}
+
+/* overview text card */
+.ov-card{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:26px 28px;margin-bottom:18px}
+.ov-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.ov-pill{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--ink-3);color:var(--mist-2);border:1px solid var(--line)}
+.ov-pill.hl{background:var(--lime);color:var(--ink);border-color:var(--lime);font-weight:600}
+.ov-block{margin-bottom:18px}
+.ov-block:last-child{margin-bottom:0}
+.ov-block h4{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--lime);margin-bottom:10px;letter-spacing:-.01em}
+.ov-block ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.ov-block li{position:relative;padding-left:17px;font-size:14px;color:var(--mist-2);line-height:1.6}
+.ov-block li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--lime);opacity:.7}
+.ov-block li b{color:var(--paper);font-weight:600}
+
+/* full storyboard pages */
+.sb-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.sb-label::before{content:"";width:22px;height:1px;background:var(--line)}
+.sb-pages{display:flex;flex-direction:column;gap:18px}
+.sb-page{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 28px -12px rgba(0,0,0,.4)}
+.sb-page img{display:block;width:100%;height:auto}
+.sb-page figcaption{
+  background:var(--ink-2);border-top:1px solid var(--line);
+  padding:11px 18px;font-size:12.5px;color:var(--mist-2);
+  font-family:'JetBrains Mono',monospace;
+}
+.sb-page figcaption b{color:var(--lime);font-weight:500}
+
 /* ---- Reveal animation ---- */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
@@ -234,26 +304,36 @@ footer{border-top:1px solid var(--line);padding:36px 0}
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-grid-bg"></div>
+  <div class="hero-deco" aria-hidden="true">
+    <span class="ring r1"></span>
+    <span class="ring r2"></span>
+    <span class="ring r3"></span>
+    <span class="blip"></span>
+    <span class="blip2"></span>
+    <span class="chip chip1"><span class="k">policy</span> → flow</span>
+    <span class="chip chip2"><span class="k">front</span> + admin</span>
+  </div>
   <div class="wrap hero-in">
-    <div class="hero-status reveal"><span class="pulse"></span>현재 NHN KCP 재직 중 · 새로운 기회에 열려 있습니다</div>
+    <div class="hero-status reveal"><span class="pulse"></span>NHN KCP 서비스기획팀 · 결제 / 정산 / 인증 도메인</div>
     <h1 class="reveal">
-      결제와 금융을<br>
-      <span class="lime">기획</span>하는 사람,<br>
+      요구사항과 정책을<br>
+      <span class="lime">구조</span>로 푸는 기획자,<br>
       <span class="out">이정소</span>
     </h1>
     <p class="hero-lead reveal">
-      PG·결제·정산 시스템과 <b>AML/KYC 금융규제 대응</b>을
-      <b>0에서 1로</b> 설계해온 6년차 서비스기획자입니다.
-      규제 요건을 실제 서비스 정책과 화면으로 옮기는 일을 합니다.
+      <b>상점관리자·파트너관리자</b> 등 결제 운영 시스템을 중심으로
+      결제·정산·고객인증 서비스를 기획합니다.
+      <b>내부 현업과 외부 가맹점의 니즈</b>를 동시에 만족시키는
+      정책과 화면을 설계해온 6년차 서비스기획자입니다.
     </p>
     <div class="hero-actions reveal">
       <a href="#work" class="btn btn-primary">프로젝트 보기 →</a>
       <a href="#contact" class="btn btn-ghost">연락하기</a>
     </div>
     <div class="hero-stats reveal">
-      <div class="hstat"><div class="n">6<span>년</span></div><div class="l">서비스기획 경력</div></div>
-      <div class="hstat"><div class="n">금감원 <span>양호</span></div><div class="l">AML 시스템 평가</div></div>
-      <div class="hstat"><div class="n">2,000<span>+</span></div><div class="l">가맹점 연동 체결</div></div>
+      <div class="hstat"><div class="n">5<span>년</span></div><div class="l">서비스기획 경력 (6년차)</div></div>
+      <div class="hstat"><div class="n">Front <span>+</span> Admin</div><div class="l">전영역 화면·정책 설계</div></div>
+      <div class="hstat"><div class="n">다수 <span>PL/PO</span></div><div class="l">프로젝트 리딩 수행</div></div>
     </div>
   </div>
 </header>
@@ -264,32 +344,32 @@ footer{border-top:1px solid var(--line);padding:36px 0}
     <div class="eyebrow reveal">About</div>
     <div class="about-grid">
       <div class="about-body reveal">
-        <h2 class="sec-title">규제와 사용자 사이를<br>설계합니다</h2>
+        <h2 class="sec-title">내부 운영과 외부 가맹점,<br>양쪽을 모두 보는 기획</h2>
         <p>
-          저는 <b>결제·금융 도메인</b>에서 복잡한 제도와 정책을
-          사용자가 실제로 쓸 수 있는 서비스로 옮기는 일을 합니다.
-          금융감독원의 <span class="lime">AML 제도 개선 요건</span>을 받아
-          비대면 인증 플로우와 고객위험평가 모델로 구현했고,
-          그 결과 금감원 평가에서 <b>'양호'</b> 등급을 받았습니다.
+          저는 NHN KCP에서 <b>상점관리자·파트너관리자</b> 같은
+          <span class="lime">결제 운영 어드민(Admin) 시스템</span>을 중심으로 일합니다.
+          가맹점이 직접 쓰는 화면(Front)과 내부 운영팀이 쓰는 관리 화면(Admin)을
+          함께 기획하기 때문에, 늘 <b>두 사용자 집단의 니즈를 동시에</b> 고려합니다.
         </p>
         <p>
-          PG 결제수단별 매출전표를 반응형으로 전면 개편하고,
-          가맹점 정산달력을 고도화해 <b>CS·VoC를 의미 있게 줄였습니다.</b>
-          현업·법무·개발이 얽힌 프로젝트에서 <span class="lime">PL/PO로 일정과 정책을 총괄</span>하는 데
-          익숙합니다.
+          예를 들어 매출전표를 개편할 때는 가맹점의 <b>"모바일에서도 전표를 보고 싶다"</b>는
+          요구와, 내부의 <b>"결제수단마다 제각각인 데이터를 표준화하고 싶다"</b>는 요구를
+          하나의 구조로 풀어냈습니다. 정산달력을 고도화할 때도
+          가맹점의 자금 운용 편의와 내부 CS 부담 감소를 <span class="lime">같은 화면 안에서</span> 해결했습니다.
         </p>
         <p>
-          숫자 뒤에 있는 맥락을 중요하게 생각합니다.
-          왜 이 정책이 필요한지, 사용자가 어디서 막히는지를
-          데이터와 VoC로 확인한 뒤 화면을 그립니다.
+          결제·정산·고객인증처럼 <b>비즈니스 로직과 데이터가 복잡한 영역</b>을
+          사용자 관점의 프로세스로 구조화하는 일을 잘합니다.
+          현업·디자인·개발·법무가 얽힌 프로젝트에서
+          <span class="lime">PL/PO로 일정과 정책을 총괄</span>하며, 서비스 기획의 전 과정을 책임집니다.
         </p>
       </div>
       <div class="kv-card reveal">
         <h3>// Profile</h3>
         <div class="kv"><span class="k">현직</span><span class="v">NHN KCP · 대리</span></div>
         <div class="kv"><span class="k">이전</span><span class="v">㈜천재교과서</span></div>
-        <div class="kv"><span class="k">경력</span><span class="v">약 6년차 (2018~)</span></div>
-        <div class="kv"><span class="k">전문</span><span class="v">PG · AML · KYC · 정산</span></div>
+        <div class="kv"><span class="k">경력</span><span class="v">5년(6년차, 2021~)</span></div>
+        <div class="kv"><span class="k">전문</span><span class="v">결제 · 정산 · AML · 인증</span></div>
         <div class="kv"><span class="k">자격</span><span class="v">SQLD · 컴활 1급</span></div>
         <div class="kv"><span class="k">어학</span><span class="v">TOEIC Speaking AL</span></div>
         <div class="chips">
@@ -307,12 +387,12 @@ footer{border-top:1px solid var(--line);padding:36px 0}
   <div class="wrap">
     <div class="eyebrow reveal">Expertise</div>
     <h2 class="sec-title reveal">핵심 역량</h2>
-    <p class="sec-sub reveal">결제·금융 도메인에서 쌓아온 네 가지 축. 규제 대응부터 데이터 기반 UX까지.</p>
+    <p class="sec-sub reveal">결제·금융 도메인에서 쌓아온 네 가지 축. 규제 대응부터 협업·정책 설계까지.</p>
     <div class="cap-grid">
       <div class="cap reveal" style="--cap-c:var(--lime)">
         <div class="idx">01</div>
         <h3>금융 규제 대응 기획</h3>
-        <p>AML/KYC 제도 이행, CDD·EDD 프로세스 설계. 금융감독원 규제 요건을 서비스 정책과 화면으로 전환한 경험.</p>
+        <p>AML 제도 이행, CDD·EDD 프로세스 설계. 금융감독원 규제 요건을 서비스 정책과 화면으로 전환한 경험.</p>
       </div>
       <div class="cap reveal" style="--cap-c:var(--cyan)">
         <div class="idx">02</div>
@@ -321,13 +401,13 @@ footer{border-top:1px solid var(--line);padding:36px 0}
       </div>
       <div class="cap reveal" style="--cap-c:var(--violet)">
         <div class="idx">03</div>
-        <h3>프로젝트 리딩 (PL / PO)</h3>
-        <p>현업·법무·개발 다기능팀 협업 리딩. WBS 기반 일정·리스크 관리와 의사결정 총괄.</p>
+        <h3>유관부서 협업 & 프로젝트 리딩</h3>
+        <p>현업·법무·디자인·개발·외주사 등 다양한 이해관계자의 요구사항을 조율하고, PL/PO로서 WBS 기반 일정·리스크 관리와 의사결정을 총괄합니다.</p>
       </div>
       <div class="cap reveal" style="--cap-c:#F5A623">
         <div class="idx">04</div>
-        <h3>데이터 기반 UX 개선</h3>
-        <p>GA 사용자 행동 분석과 VoC 기반 Depth 구조 개선. 전환율과 만족도를 함께 끌어올립니다.</p>
+        <h3>정책 설계 & 예외 케이스 정의</h3>
+        <p>사업자 유형별 인증 분기, 시도 횟수 제한, 데이터 정합성 등 복잡한 비즈니스 규칙을 빠짐없이 정의하고, AS-IS/TO-BE·레퍼런스 분석으로 작업 당위성을 확보합니다.</p>
       </div>
     </div>
   </div>
@@ -340,21 +420,64 @@ footer{border-top:1px solid var(--line);padding:36px 0}
     <h2 class="sec-title reveal">대표 프로젝트</h2>
     <p class="sec-sub reveal">금융 규제 대응부터 결제 인프라까지 — 0→1로 설계한 작업들.</p>
 
-    <div class="proj reveal">
+    <div class="proj-wrap reveal">
+  <div class="proj reveal">
       <div class="proj-no">01</div>
       <div>
-        <div class="proj-tags"><span class="ptag">AML / KYC</span><span class="ptag alt">규제 대응</span><span class="ptag alt">인증 설계</span></div>
-        <h3>AML 고객정보확인 시스템 구축</h3>
-        <div class="role mono">NHN KCP · PL (기획 총괄) · 2024.07–2024.11</div>
-        <p>금융감독원 AML 제도 개선 요건을 이행. 위험기반접근(RBA) 고객위험평가 모델과 비대면 3단계 인증(휴대폰→신분증→1원 계좌)을 설계하고, 사업자 유형별 인증 분기 정책을 정의했습니다.</p>
+        <div class="proj-tags"><span class="ptag">AML</span><span class="ptag alt">규제 대응</span><span class="ptag alt">인증 설계</span><span class="ptag alt">OCR AI</span></div>
+        <h3>AML 고객정보확인 시스템 구축 및 고도화</h3>
+        <div class="role mono">NHN KCP · PL (기획 총괄) · 2024.07–2024.11, 2026.04–2026.06</div>
+        <p>금융감독원 AML 제도 개선 요건을 이행. 위험기반접근(RBA) 고객위험평가 모델과 비대면 3단계 인증(휴대폰→신분증→1원 계좌)을 설계하고, 사업자 유형별 인증 분기 정책을 정의했습니다. 시스템이 안정화된 2년 뒤에는 신분증 진위확인에 OCR AI 검증을 도입하여, 내부 검증 정확도를 높이고 심사 소요 시간을 단축했습니다.</p>
       </div>
       <div class="proj-metrics">
         <div class="metric"><div class="mn">금감원 "양호"</div><div class="ml">제도 이행 평가 (2025.03)</div></div>
         <div class="metric c"><div class="mn">자동화 20%↑</div><div class="ml">수기 심사 업무 감소</div></div>
       </div>
+      <button class="detail-toggle reveal" aria-expanded="false"><span class="arr">▸</span> 기획 상세 보기</button>
+      <div class="detail-panel"><div class="detail-inner">
+<div class="sb-label">프로젝트 개요</div>
+<div class="ov-card">
+  <div class="ov-meta">
+    <span class="ov-pill hl">기여도 30%</span>
+    <span class="ov-pill">PL · 기획 총괄</span>
+    <span class="ov-pill">기획3 · 디자인1 · 퍼블1 · 개발3 + 외주</span>
+  </div>
+  <div class="ov-block">
+    <h4>프로젝트 진행 배경</h4>
+    <ul>
+      <li>금융감독원의 자금세탁방지(AML) 제도 개선 요구사항 이행</li>
+      <li>자금세탁방지 내부통제 체계 고도화 및 고위험 거래 모니터링 효율성 확보</li>
+      <li>위험기반접근(RBA) 기반 고객위험평가 모델 구축으로 리스크 관리 체계 확립</li>
+    </ul>
+  </div>
+  <div class="ov-block">
+    <h4>프로젝트 성과</h4>
+    <ul>
+      <li>고객위험평가 모형 구축 및 주기적 평가 체계 마련</li>
+      <li>STR(의심거래보고) 자동 모니터링 시스템 구현</li>
+      <li>비대면 고객확인 프로세스(휴대폰 본인인증 · 계좌점유인증 · 신분증검증) 수립</li>
+      <li><b>금융감독원 개선계획 이행현황 점검 결과 "양호" 평가 획득</b> (2025.03.25)</li>
+    </ul>
+  </div>
+</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/ov_aml.png" alt="NHN KCP 고객확인서 — 비대면 인증 화면 (사업자정보 · 1원인증 · 대리인 진위확인)" loading="lazy"><figcaption>NHN KCP 고객확인서 — 비대면 인증 화면 (사업자정보 · 1원인증 · 대리인 진위확인)</figcaption></figure>
+</div>
+<div class="sb-label" style="margin-top:30px">기획서 상세 · 디스크립션 포함</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/p05.png" alt="사업자 유형별 인증 분기 정책 · 일 최대 시도 횟수 정의" loading="lazy"><figcaption>사업자 유형별 인증 분기 정책 · 일 최대 시도 횟수 정의</figcaption></figure>
+<figure class="sb-page"><img src="img/p06.png" alt="대리인 정보 입력 화면 — Description 포함" loading="lazy"><figcaption>대리인 정보 입력 화면 — Description 포함</figcaption></figure>
+</div>
+      </div></div>
     </div>
+</div></div>
+    </div>
+</div></div>
+    </div>
+</div>
 
-    <div class="proj reveal">
+    <div class="proj-wrap reveal">
+  <div class="proj reveal">
       <div class="proj-no">02</div>
       <div>
         <div class="proj-tags"><span class="ptag">결제 UX</span><span class="ptag alt">반응형 웹</span><span class="ptag alt">데이터 표준화</span></div>
@@ -366,9 +489,53 @@ footer{border-top:1px solid var(--line);padding:36px 0}
         <div class="metric"><div class="mn">CS 20%↓</div><div class="ml">전표 확인 문의 감소</div></div>
         <div class="metric v"><div class="mn">PC + MO</div><div class="ml">반응형 통합 전표</div></div>
       </div>
+      <button class="detail-toggle reveal" aria-expanded="false"><span class="arr">▸</span> 기획 상세 보기</button>
+      <div class="detail-panel"><div class="detail-inner">
+<div class="sb-label">프로젝트 개요</div>
+<div class="ov-card">
+  <div class="ov-meta">
+    <span class="ov-pill hl">기여도 50%</span>
+    <span class="ov-pill">PL · 기획 총괄</span>
+    <span class="ov-pill">기획1 · 디자인1 · 퍼블1 · 개발1</span>
+  </div>
+  <div class="ov-block">
+    <h4>진행 배경 — Legacy 시스템 현대화 및 접근성 강화</h4>
+    <ul>
+      <li>PC 환경(ActiveX/팝업)에 최적화되어 모바일 확인이 어려웠던 기존 전표 시스템 개편</li>
+      <li>디바이스 제약 없는 결제서비스 제공을 통한 고객 편의성 제고</li>
+    </ul>
+  </div>
+  <div class="ov-block">
+    <h4>성과 · 시스템 성능 및 환경 개선</h4>
+    <ul>
+      <li>노후화된 호출 도메인을 신규 인프라로 이관하여 <b>로딩 속도 개선 및 안정성 확보</b></li>
+      <li>데이터 예외 케이스(Edge Case) 전수 점검 및 정합성 로직 수정으로 운영 리스크 제거</li>
+    </ul>
+  </div>
+  <div class="ov-block">
+    <h4>성과 · UX/UI 개선 및 기능 고도화</h4>
+    <ul>
+      <li><b>반응형 웹(Responsive Web)</b> 설계로 PC/MO 구분 없이 일관된 전표 확인 경험 제공</li>
+      <li>모바일 증빙 수요 트렌드를 분석하여 <b>이미지/PDF 다운로드</b> 기능 신규 탑재</li>
+    </ul>
+  </div>
+</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/ov_receipt.png" alt="신용카드 매출전표 — AS-IS(PC) / TO-BE(모바일) 비교" loading="lazy"><figcaption>신용카드 매출전표 — AS-IS(PC) / TO-BE(모바일) 비교</figcaption></figure>
+</div>
+<div class="sb-label" style="margin-top:30px">기획서 상세 · 디스크립션 포함</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/p11.png" alt="데이터 출력 형태 정의 — Description 포함" loading="lazy"><figcaption>데이터 출력 형태 정의 — Description 포함</figcaption></figure>
+<figure class="sb-page"><img src="img/p12.png" alt="국문 / 영문 변경안 — Description 포함" loading="lazy"><figcaption>국문 / 영문 변경안 — Description 포함</figcaption></figure>
+</div>
+      </div></div>
     </div>
+</div></div>
+    </div>
+</div>
 
-    <div class="proj reveal">
+    <div class="proj-wrap reveal">
+  <div class="proj reveal">
       <div class="proj-no">03</div>
       <div>
         <div class="proj-tags"><span class="ptag">정산</span><span class="ptag alt">UX 개선</span><span class="ptag alt">VoC 분석</span></div>
@@ -380,13 +547,24 @@ footer{border-top:1px solid var(--line);padding:36px 0}
         <div class="metric"><div class="mn">VoC 15%↓</div><div class="ml">단순 정산 문의 감소</div></div>
         <div class="metric c"><div class="mn">One-view</div><div class="ml">정산 정보 통합 조회</div></div>
       </div>
+      <button class="detail-toggle reveal" aria-expanded="false"><span class="arr">▸</span> 기획 상세 보기</button>
+      <div class="detail-panel"><div class="detail-inner">
+<div class="sb-label">기획서 원본 · 디스크립션 포함</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/p08.png" alt="정산달력 개선 기획 — 배경 · 담당업무 · 화면 · 성과" loading="lazy"><figcaption>정산달력 개선 기획 — 배경 · 담당업무 · 화면 · 성과</figcaption></figure>
+</div>
+      </div></div>
     </div>
+</div></div>
+    </div>
+</div>
 
-    <div class="proj reveal">
+    <div class="proj-wrap reveal">
+  <div class="proj reveal">
       <div class="proj-no">04</div>
       <div>
         <div class="proj-tags"><span class="ptag">핀테크 연동</span><span class="ptag alt">API</span><span class="ptag alt">선불결제</span></div>
-        <h3>BBQ 선불결제 코드발급·연동 시스템</h3>
+        <h3>선불서비스 코드발급·PG 연동 시스템 기획</h3>
         <div class="role mono">NHN KCP · 기획 담당 · 2024</div>
         <p>기존 PG 계약 프로세스와 동일한 흐름으로 선불가맹점 코드발급을 내재화. 업체코드·사이트코드 발급과 선불관리자 API 데이터 전송 로직을 설계해 담당자 운영 편의성을 높였습니다.</p>
       </div>
@@ -394,9 +572,45 @@ footer{border-top:1px solid var(--line);padding:36px 0}
         <div class="metric"><div class="mn">2,000+</div><div class="ml">가맹점 계약 체결</div></div>
         <div class="metric v"><div class="mn">내재화</div><div class="ml">코드발급 프로세스</div></div>
       </div>
+      <button class="detail-toggle reveal" aria-expanded="false"><span class="arr">▸</span> 기획 상세 보기</button>
+      <div class="detail-panel"><div class="detail-inner">
+<div class="sb-label">프로젝트 개요</div>
+<div class="ov-card">
+  <div class="ov-meta">
+    <span class="ov-pill hl">기여도 50%</span>
+    <span class="ov-pill">기획1 · 디자인1 · 퍼블1 · 개발1</span>
+  </div>
+  <div class="ov-block">
+    <h4>작업 내용</h4>
+    <ul>
+      <li>내부관리자 신규 메뉴 추가 — 제너시스비비큐(BBQ) 선불서비스 제공을 위한 <b>코드발급 내재화 기능 기획</b></li>
+    </ul>
+  </div>
+  <div class="ov-block">
+    <h4>성과</h4>
+    <ul>
+      <li><b>약 2,000개 가맹점 계약 체결</b></li>
+      <li>기존 PG서비스 계약과 동일한 프로세스로 진행 가능하도록 기능을 추가하여 계약담당자의 편의성 강화</li>
+    </ul>
+  </div>
+</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/ov_prepaid.png" alt="선불결제 코드발급 — 신규신청 / 업데이트 연동 흐름도" loading="lazy"><figcaption>선불결제 코드발급 — 신규신청 / 업데이트 연동 흐름도</figcaption></figure>
+</div>
+<div class="sb-label" style="margin-top:30px">기획서 상세 · 디스크립션 포함</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/p15.png" alt="선불사업자 변경 데이터 전송 — 관리자 화면 + Description" loading="lazy"><figcaption>선불사업자 변경 데이터 전송 — 관리자 화면 + Description</figcaption></figure>
+</div>
+      </div></div>
     </div>
+</div></div>
+    </div>
+</div></div>
+    </div>
+</div>
 
-    <div class="proj reveal">
+    <div class="proj-wrap reveal">
+  <div class="proj reveal">
       <div class="proj-no">05</div>
       <div>
         <div class="proj-tags"><span class="ptag">에듀테크</span><span class="ptag alt">PO</span><span class="ptag alt">게이미피케이션</span></div>
@@ -408,7 +622,77 @@ footer{border-top:1px solid var(--line);padding:36px 0}
         <div class="metric"><div class="mn">MAU 2,000</div><div class="ml">출시 3개월 활성</div></div>
         <div class="metric c"><div class="mn">PV 15%↑</div><div class="ml">선생님홈 리뉴얼</div></div>
       </div>
+      <button class="detail-toggle reveal" aria-expanded="false"><span class="arr">▸</span> 기획 상세 보기</button>
+      <div class="detail-panel"><div class="detail-inner">
+<div class="sb-label">프로젝트 개요</div>
+<div class="ov-card">
+  <div class="ov-meta">
+    <span class="ov-pill hl">기여도 45%</span>
+    <span class="ov-pill">PO · 기획 총괄</span>
+    <span class="ov-pill">기획1 · 디자인1 · 퍼블1 · 개발2</span>
+  </div>
+  <div class="ov-block">
+    <h4>작업 내용</h4>
+    <ul>
+      <li>Tablet 전용 신규 서비스 'AI 세종대왕 국어문법' 기획</li>
+      <li>AI 기반 서비스 문항 선별 — <b>B-IRT 모델 사용</b> (AI 센터 협업)</li>
+      <li>PM 역할 수행, 정책 수립, Front &amp; Admin 서비스 및 데이터 로직 설계, 스토리보드 작성</li>
+    </ul>
+  </div>
+  <div class="ov-block">
+    <h4>성과</h4>
+    <ul>
+      <li>2023.01–03 각 월 평균 <b>MAU 2,000명대 달성</b></li>
+      <li>Admin 문항 관리를 통한 학습생 대량 데이터 축적, 자동 추천서비스 제공</li>
+    </ul>
+  </div>
+</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/ov_sejong.png" alt="AI 세종대왕 국어문법 — 개요 및 프론트(Tab) 화면" loading="lazy"><figcaption>AI 세종대왕 국어문법 — 개요 및 프론트(Tab) 화면</figcaption></figure>
+</div>
+<div class="sb-label" style="margin-top:30px">기획서 상세 · 디스크립션 포함</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/p19.png" alt="캐릭터 이동 화면 — 프론트(Tab) 기획안 + Description" loading="lazy"><figcaption>캐릭터 이동 화면 — 프론트(Tab) 기획안 + Description</figcaption></figure>
+<figure class="sb-page"><img src="img/p20.png" alt="진단평가 문제풀이 화면 — Description 포함" loading="lazy"><figcaption>진단평가 문제풀이 화면 — Description 포함</figcaption></figure>
+<figure class="sb-page"><img src="img/p21.png" alt="문항 관리 — 관리자(Admin) 화면 + Description" loading="lazy"><figcaption>문항 관리 — 관리자(Admin) 화면 + Description</figcaption></figure>
+</div>
+<div class="sb-label" style="margin-top:36px">밀크T고등 홈페이지 개편 · 프로젝트 개요</div>
+<div class="ov-card">
+  <div class="ov-meta">
+    <span class="ov-pill hl">기여도 40%</span>
+    <span class="ov-pill">PL · 화면설계 · 데이터 분석</span>
+    <span class="ov-pill">기획2 · 디자인2 · 퍼블1 · 개발3</span>
+  </div>
+  <div class="ov-block">
+    <h4>작업 내용</h4>
+    <ul>
+      <li>밀크T고등 브랜드웹 &gt; 선생님 메뉴 UI/UX 개편</li>
+      <li>강사 및 강좌 강조를 통한 매출 증대 목적</li>
+    </ul>
+  </div>
+  <div class="ov-block">
+    <h4>성과</h4>
+    <ul>
+      <li>선생님 Home 일 평균 <b>PV 15% 상승</b> (GA 수집데이터 기준)</li>
+    </ul>
+  </div>
+</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/ov_milkt.png" alt="밀크T고등 선생님홈 개편 — 개요 화면" loading="lazy"><figcaption>밀크T고등 선생님홈 UI/UX 개편 — 개요 화면</figcaption></figure>
+</div>
+<div class="sb-label" style="margin-top:30px">기획서 상세 · 디스크립션 포함</div>
+<div class="sb-pages">
+<figure class="sb-page"><img src="img/p24.png" alt="선생님 홈 메인 — 강사별 컨텐츠 강조형 + Description" loading="lazy"><figcaption>선생님 홈 메인 — 강사별 컨텐츠 강조형 + Description</figcaption></figure>
+<figure class="sb-page"><img src="img/p25.png" alt="개별 선생님 홈 — 강사별 이미지 강조형 + Description" loading="lazy"><figcaption>개별 선생님 홈 — 강사별 이미지 강조형 + Description</figcaption></figure>
+<figure class="sb-page"><img src="img/p26.png" alt="내부관리자 화면 컨트롤 기능 — Description" loading="lazy"><figcaption>내부관리자 화면 컨트롤 기능 — Description</figcaption></figure>
+</div>
+      </div></div>
     </div>
+</div></div>
+    </div>
+</div></div>
+    </div>
+</div>
 
   </div>
 </section>
@@ -424,19 +708,19 @@ footer{border-top:1px solid var(--line);padding:36px 0}
         <div class="tl-date mono">2023.10 — 현재</div>
         <h3>NHN KCP · PG운영실 서비스기획팀</h3>
         <div class="org">대리 · 서비스기획자</div>
-        <p>AML/KYC 규제 대응, 매출전표·정산 시스템, 파트너관리자 영문화 등 결제 인프라 기반 서비스 기획을 담당. PL/PO로 다수 프로젝트의 정책·일정을 총괄하고 있습니다.</p>
+        <p>상점관리자·파트너관리자 등 결제 운영 어드민을 중심으로 매출전표·정산·고객인증 서비스를 기획. 가맹점(Front)과 내부 운영팀(Admin) 양쪽의 화면·정책을 함께 설계하며, 다수 프로젝트를 PL/PO로 총괄하고 있습니다.</p>
       </div>
       <div class="tl-item reveal">
         <div class="tl-date mono">2021.03 — 2023.10</div>
         <h3>㈜천재교과서 · IT기획부문 웹기획팀</h3>
         <div class="org">사원 · 웹/서비스 기획자</div>
-        <p>AI 기반 학습 서비스와 게이미피케이션 신규 서비스를 0→1로 기획. GA 데이터 분석 기반 UI/UX 개선과 Admin 시스템 설계를 담당했습니다.</p>
+        <p>AI 기반 학습 서비스와 게이미피케이션 신규 서비스를 기획 단계부터 출시까지 주도했습니다. GA 데이터 분석을 바탕으로 UI/UX를 개선하고, 콘텐츠 운영을 위한 Admin 시스템을 설계했습니다.</p>
       </div>
       <div class="tl-item reveal">
         <div class="tl-date mono">2018 — 2021</div>
         <h3>인턴 · 초기 커리어</h3>
         <div class="org">Hitachi-LG Data Storage · ㈜인크루트</div>
-        <p>데이터 스토리지와 HR 플랫폼 환경에서 서비스 기획의 기초를 다졌습니다.</p>
+        <p>광스토리지·스마트 디바이스 전문기업(HLDS)에서 시장조사·영업기획을, HR 플랫폼 기업에서 마케팅·콘텐츠 기획을 경험하며 기획 업무의 기초를 다졌습니다.</p>
       </div>
     </div>
   </div>
@@ -447,10 +731,9 @@ footer{border-top:1px solid var(--line);padding:36px 0}
   <div class="wrap">
     <div class="eyebrow reveal" style="justify-content:center">Get in touch</div>
     <h2 class="reveal">함께 일할<br><span class="lime">기회를 찾고</span> 있습니다</h2>
-    <p class="reveal">결제·금융·핀테크 도메인에서 새로운 도전을 준비하고 있습니다. 편하게 연락 주세요.</p>
-    <div class="contact-links reveal">
-      <a href="mailto:your-email@example.com" class="btn btn-primary">이메일 보내기 →</a>
-      <a href="#" class="btn btn-ghost">이력서 / 포트폴리오 PDF</a>
+    <div class="contact-links reveal" style="margin-top:40px">
+      <a href="mailto:leejeongso0210@naver.com" class="btn btn-primary">이메일 보내기 →</a>
+      <a href="#" class="btn btn-ghost">경력기술서 PDF</a>
     </div>
   </div>
 </section>
@@ -458,7 +741,7 @@ footer{border-top:1px solid var(--line);padding:36px 0}
 <footer>
   <div class="foot-in">
     <span class="mono">© 2026 이정소 · LEE JEONGSO</span>
-    <span class="mono">Designed &amp; built with care</span>
+    <span class="mono">서비스기획자 · 결제 / 정산 / 인증 도메인</span>
   </div>
 </footer>
 
@@ -474,6 +757,16 @@ const io=new IntersectionObserver((es)=>{
 document.querySelectorAll('.reveal').forEach((el,i)=>{
   el.style.transitionDelay=(i%5*60)+'ms';
   io.observe(el);
+});
+// project detail accordion
+document.querySelectorAll('.detail-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const panel=btn.nextElementSibling;
+    const open=panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+    btn.querySelector('.arr').textContent='▸';
+    btn.childNodes[btn.childNodes.length-1].textContent=open?' 기획 상세 닫기':' 기획 상세 보기';
+  });
 });
 </script>
 </body>
