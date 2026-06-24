@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이정소 · 서비스기획 포트폴리오</title>
+<meta name="description" content="6년차 서비스기획자 이정소 — PG·결제·정산 시스템과 AML/KYC 금융규제 대응을 0→1로 설계해온 서비스기획 PM. NHN KCP 재직.">
+<meta name="keywords" content="이정소,서비스기획,NHN KCP,PG,AML,KYC,결제 정산,핀테크,서비스기획 포트폴리오">
+<meta property="og:type" content="website">
+<meta property="og:title" content="이정소 · 서비스기획 포트폴리오">
+<meta property="og:description" content="PG·결제·정산 시스템과 AML/KYC 금융규제 대응을 설계해온 6년차 서비스기획 PM.">
+<meta property="og:locale" content="ko_KR">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#0B0E1A;          /* near-black indigo */
+  --ink-2:#12162A;        /* panel */
+  --ink-3:#1B2138;        /* card */
+  --line:#272E48;         /* hairline */
+  --lime:#C6F432;         /* electric lime accent */
+  --lime-dim:#9BC322;
+  --mist:#8A92B2;         /* muted text */
+  --mist-2:#B8BED6;       /* secondary text */
+  --paper:#F4F5F8;        /* light text */
+  --violet:#7B6CF6;       /* secondary accent */
+  --cyan:#3DDBD9;         /* tertiary accent */
+  --maxw:1120px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'IBM Plex Sans KR',system-ui,sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--lime);color:var(--ink)}
+
+a{color:inherit;text-decoration:none}
+.mono{font-family:'JetBrains Mono',monospace}
+.display{font-family:'Space Grotesk',sans-serif}
+
+/* ---- Layout helpers ---- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{padding:108px 0}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--lime)}
+.sec-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(28px,4vw,44px);font-weight:600;line-height:1.12;
+  letter-spacing:-.02em;margin-bottom:18px;
+}
+.sec-sub{color:var(--mist-2);font-size:16px;max-width:560px;margin-bottom:56px}
+
+/* ---- Nav ---- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  backdrop-filter:blur(14px);
+  background:rgba(11,14,26,.72);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s;
+}
+nav.scrolled{border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:'Space Grotesk';font-weight:700;font-size:18px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.nav-links{display:flex;gap:34px;font-size:14px;color:var(--mist-2)}
+.nav-links a{position:relative;transition:color .2s}
+.nav-links a:hover{color:var(--paper)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--lime);transition:width .25s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:'JetBrains Mono';font-size:13px;color:var(--lime);
+  border:1px solid var(--line);padding:9px 16px;border-radius:8px;transition:.2s;
+}
+.nav-cta:hover{border-color:var(--lime);background:rgba(198,244,50,.07)}
+@media(max-width:720px){.nav-links{display:none}}
+
+/* ---- Hero ---- */
+.hero{padding:210px 0 96px;position:relative}
+.hero-grid-bg{
+  position:absolute;inset:0;z-index:0;opacity:.5;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:54px 54px;
+  mask-image:radial-gradient(ellipse 80% 60% at 70% 20%,#000 10%,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 70% 20%,#000 10%,transparent 70%);
+}
+.hero-in{position:relative;z-index:1}
+.hero-status{
+  display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono';
+  font-size:12.5px;color:var(--mist-2);border:1px solid var(--line);
+  padding:7px 14px;border-radius:100px;margin-bottom:34px;background:var(--ink-2);
+}
+.hero-status .pulse{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 0 var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(61,219,217,.6)}70%{box-shadow:0 0 0 8px rgba(61,219,217,0)}100%{box-shadow:0 0 0 0 rgba(61,219,217,0)}}
+.hero h1{
+  font-family:'Space Grotesk';font-weight:700;
+  font-size:clamp(40px,7vw,82px);line-height:1.02;letter-spacing:-.035em;margin-bottom:28px;
+}
+.hero h1 .lime{color:var(--lime)}
+.hero h1 .out{color:transparent;-webkit-text-stroke:1.4px var(--mist)}
+.hero-lead{font-size:clamp(16px,2vw,20px);color:var(--mist-2);max-width:600px;line-height:1.65;margin-bottom:40px}
+.hero-lead b{color:var(--paper);font-weight:600}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px}
+.btn{
+  font-family:'Space Grotesk';font-weight:600;font-size:15px;
+  padding:14px 26px;border-radius:10px;transition:.22s;display:inline-flex;align-items:center;gap:9px;
+}
+.btn-primary{background:var(--lime);color:var(--ink)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(198,244,50,.5)}
+.btn-ghost{border:1px solid var(--line);color:var(--paper)}
+.btn-ghost:hover{border-color:var(--mist);background:var(--ink-2)}
+.hero-stats{display:flex;gap:48px;flex-wrap:wrap}
+.hstat .n{font-family:'Space Grotesk';font-weight:700;font-size:34px;letter-spacing:-.02em;color:var(--paper)}
+.hstat .n span{color:var(--lime)}
+.hstat .l{font-size:13px;color:var(--mist);margin-top:2px}
+
+/* ---- About ---- */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:40px}}
+.about-body p{color:var(--mist-2);font-size:16.5px;line-height:1.8;margin-bottom:20px}
+.about-body p b{color:var(--paper);font-weight:600}
+.about-body .lime{color:var(--lime);font-weight:500}
+.kv-card{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:30px}
+.kv-card h3{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist);margin-bottom:22px}
+.kv{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:var(--mist)}
+.kv .v{color:var(--paper);font-weight:500;text-align:right}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font-family:'JetBrains Mono';font-size:12px;color:var(--mist-2);border:1px solid var(--line);padding:6px 11px;border-radius:7px;transition:.2s}
+.chip:hover{border-color:var(--lime);color:var(--lime)}
+
+/* ---- Expertise (4 capability) ---- */
+.cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:760px){.cap-grid{grid-template-columns:1fr}}
+.cap{
+  background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:30px 30px 34px;
+  position:relative;overflow:hidden;transition:.28s;
+}
+.cap:hover{border-color:var(--cap-c,var(--lime));transform:translateY(-4px)}
+.cap::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--cap-c,var(--lime));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.cap:hover::before{transform:scaleX(1)}
+.cap .idx{font-family:'JetBrains Mono';font-size:12px;color:var(--cap-c,var(--lime));margin-bottom:18px}
+.cap h3{font-family:'Space Grotesk';font-size:20px;font-weight:600;margin-bottom:12px;letter-spacing:-.01em}
+.cap p{color:var(--mist-2);font-size:14.5px;line-height:1.7}
+
+/* ---- Projects ---- */
+.proj{
+  border-top:1px solid var(--line);padding:44px 0;
+  display:grid;grid-template-columns:84px 1fr 300px;gap:40px;align-items:start;
+  transition:.3s;
+}
+.proj:hover{background:linear-gradient(90deg,rgba(198,244,50,.04),transparent 60%)}
+.proj:last-child{border-bottom:1px solid var(--line)}
+@media(max-width:860px){.proj{grid-template-columns:1fr;gap:20px}}
+.proj-no{font-family:'Space Grotesk';font-weight:700;font-size:30px;color:var(--line);transition:color .3s}
+.proj:hover .proj-no{color:var(--lime)}
+.proj-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.ptag{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--ink);background:var(--lime);padding:4px 9px;border-radius:6px;font-weight:500}
+.ptag.alt{background:transparent;color:var(--mist-2);border:1px solid var(--line)}
+.proj h3{font-family:'Space Grotesk';font-size:24px;font-weight:600;letter-spacing:-.015em;margin-bottom:10px;line-height:1.25}
+.proj .role{font-family:'JetBrains Mono';font-size:12.5px;color:var(--mist);margin-bottom:16px}
+.proj p{color:var(--mist-2);font-size:15px;line-height:1.7;max-width:560px}
+.proj-metrics{display:flex;flex-direction:column;gap:14px}
+.metric{background:var(--ink-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.metric .mn{font-family:'Space Grotesk';font-weight:700;font-size:22px;color:var(--lime);letter-spacing:-.01em}
+.metric.v .mn{color:var(--violet)}
+.metric.c .mn{color:var(--cyan)}
+.metric .ml{font-size:12.5px;color:var(--mist);margin-top:3px}
+
+/* ---- Experience timeline ---- */
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:42px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-34px;top:5px;width:15px;height:15px;border-radius:50%;background:var(--ink);border:2px solid var(--line)}
+.tl-item.now::before{border-color:var(--lime);background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.tl-date{font-family:'JetBrains Mono';font-size:12.5px;color:var(--lime);margin-bottom:6px}
+.tl-item h3{font-family:'Space Grotesk';font-size:19px;font-weight:600;margin-bottom:4px}
+.tl-item .org{font-size:14px;color:var(--mist);margin-bottom:10px}
+.tl-item p{color:var(--mist-2);font-size:14.5px;line-height:1.7;max-width:600px}
+
+/* ---- Contact ---- */
+.contact{text-align:center;border-top:1px solid var(--line)}
+.contact h2{font-family:'Space Grotesk';font-weight:700;font-size:clamp(34px,6vw,68px);letter-spacing:-.03em;line-height:1.05;margin-bottom:26px}
+.contact h2 .lime{color:var(--lime)}
+.contact p{color:var(--mist-2);font-size:17px;max-width:480px;margin:0 auto 40px}
+.contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ---- Footer ---- */
+footer{border-top:1px solid var(--line);padding:36px 0}
+.foot-in{max-width:var(--maxw);margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-in span{font-size:13px;color:var(--mist)}
+
+/* ---- Reveal animation ---- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  *{scroll-behavior:auto!important}
+  .pulse{animation:none}
+}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand"><span class="dot"></span>JEONGSO</a>
+    <div class="nav-links">
+      <a href="#about">소개</a>
+      <a href="#expertise">전문성</a>
+      <a href="#work">프로젝트</a>
+      <a href="#experience">경력</a>
+    </div>
+    <a href="#contact" class="nav-cta">연락하기 →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-grid-bg"></div>
+  <div class="wrap hero-in">
+    <div class="hero-status reveal"><span class="pulse"></span>현재 NHN KCP 재직 중 · 새로운 기회에 열려 있습니다</div>
+    <h1 class="reveal">
+      결제와 금융을<br>
+      <span class="lime">기획</span>하는 사람,<br>
+      <span class="out">이정소</span>
+    </h1>
+    <p class="hero-lead reveal">
+      PG·결제·정산 시스템과 <b>AML/KYC 금융규제 대응</b>을
+      <b>0에서 1로</b> 설계해온 6년차 서비스기획자입니다.
+      규제 요건을 실제 서비스 정책과 화면으로 옮기는 일을 합니다.
+    </p>
+    <div class="hero-actions reveal">
+      <a href="#work" class="btn btn-primary">프로젝트 보기 →</a>
+      <a href="#contact" class="btn btn-ghost">연락하기</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="hstat"><div class="n">6<span>년</span></div><div class="l">서비스기획 경력</div></div>
+      <div class="hstat"><div class="n">금감원 <span>양호</span></div><div class="l">AML 시스템 평가</div></div>
+      <div class="hstat"><div class="n">2,000<span>+</span></div><div class="l">가맹점 연동 체결</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow reveal">About</div>
+    <div class="about-grid">
+      <div class="about-body reveal">
+        <h2 class="sec-title">규제와 사용자 사이를<br>설계합니다</h2>
+        <p>
+          저는 <b>결제·금융 도메인</b>에서 복잡한 제도와 정책을
+          사용자가 실제로 쓸 수 있는 서비스로 옮기는 일을 합니다.
+          금융감독원의 <span class="lime">AML 제도 개선 요건</span>을 받아
+          비대면 인증 플로우와 고객위험평가 모델로 구현했고,
+          그 결과 금감원 평가에서 <b>'양호'</b> 등급을 받았습니다.
+        </p>
+        <p>
+          PG 결제수단별 매출전표를 반응형으로 전면 개편하고,
+          가맹점 정산달력을 고도화해 <b>CS·VoC를 의미 있게 줄였습니다.</b>
+          현업·법무·개발이 얽힌 프로젝트에서 <span class="lime">PL/PO로 일정과 정책을 총괄</span>하는 데
+          익숙합니다.
+        </p>
+        <p>
+          숫자 뒤에 있는 맥락을 중요하게 생각합니다.
+          왜 이 정책이 필요한지, 사용자가 어디서 막히는지를
+          데이터와 VoC로 확인한 뒤 화면을 그립니다.
+        </p>
+      </div>
+      <div class="kv-card reveal">
+        <h3>// Profile</h3>
+        <div class="kv"><span class="k">현직</span><span class="v">NHN KCP · 대리</span></div>
+        <div class="kv"><span class="k">이전</span><span class="v">㈜천재교과서</span></div>
+        <div class="kv"><span class="k">경력</span><span class="v">약 6년차 (2018~)</span></div>
+        <div class="kv"><span class="k">전문</span><span class="v">PG · AML · KYC · 정산</span></div>
+        <div class="kv"><span class="k">자격</span><span class="v">SQLD · 컴활 1급</span></div>
+        <div class="kv"><span class="k">어학</span><span class="v">TOEIC Speaking AL</span></div>
+        <div class="chips">
+          <span class="chip">Figma</span><span class="chip">Google Analytics</span>
+          <span class="chip">SQL</span><span class="chip">Excel</span>
+          <span class="chip">Slack</span><span class="chip">PowerPoint</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise" style="background:var(--ink-2)">
+  <div class="wrap">
+    <div class="eyebrow reveal">Expertise</div>
+    <h2 class="sec-title reveal">핵심 역량</h2>
+    <p class="sec-sub reveal">결제·금융 도메인에서 쌓아온 네 가지 축. 규제 대응부터 데이터 기반 UX까지.</p>
+    <div class="cap-grid">
+      <div class="cap reveal" style="--cap-c:var(--lime)">
+        <div class="idx">01</div>
+        <h3>금융 규제 대응 기획</h3>
+        <p>AML/KYC 제도 이행, CDD·EDD 프로세스 설계. 금융감독원 규제 요건을 서비스 정책과 화면으로 전환한 경험.</p>
+      </div>
+      <div class="cap reveal" style="--cap-c:var(--cyan)">
+        <div class="idx">02</div>
+        <h3>결제·정산 서비스 기획</h3>
+        <p>PG 결제수단별 데이터 구조 표준화, 가맹점 정산 로직과 매출전표 시스템 설계 및 운영.</p>
+      </div>
+      <div class="cap reveal" style="--cap-c:var(--violet)">
+        <div class="idx">03</div>
+        <h3>프로젝트 리딩 (PL / PO)</h3>
+        <p>현업·법무·개발 다기능팀 협업 리딩. WBS 기반 일정·리스크 관리와 의사결정 총괄.</p>
+      </div>
+      <div class="cap reveal" style="--cap-c:#F5A623">
+        <div class="idx">04</div>
+        <h3>데이터 기반 UX 개선</h3>
+        <p>GA 사용자 행동 분석과 VoC 기반 Depth 구조 개선. 전환율과 만족도를 함께 끌어올립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="eyebrow reveal">Selected Work</div>
+    <h2 class="sec-title reveal">대표 프로젝트</h2>
+    <p class="sec-sub reveal">금융 규제 대응부터 결제 인프라까지 — 0→1로 설계한 작업들.</p>
+
+    <div class="proj reveal">
+      <div class="proj-no">01</div>
+      <div>
+        <div class="proj-tags"><span class="ptag">AML / KYC</span><span class="ptag alt">규제 대응</span><span class="ptag alt">인증 설계</span></div>
+        <h3>AML 고객정보확인 시스템 구축</h3>
+        <div class="role mono">NHN KCP · PL (기획 총괄) · 2024.07–2024.11</div>
+        <p>금융감독원 AML 제도 개선 요건을 이행. 위험기반접근(RBA) 고객위험평가 모델과 비대면 3단계 인증(휴대폰→신분증→1원 계좌)을 설계하고, 사업자 유형별 인증 분기 정책을 정의했습니다.</p>
+      </div>
+      <div class="proj-metrics">
+        <div class="metric"><div class="mn">금감원 "양호"</div><div class="ml">제도 이행 평가 (2025.03)</div></div>
+        <div class="metric c"><div class="mn">자동화 20%↑</div><div class="ml">수기 심사 업무 감소</div></div>
+      </div>
+    </div>
+
+    <div class="proj reveal">
+      <div class="proj-no">02</div>
+      <div>
+        <div class="proj-tags"><span class="ptag">결제 UX</span><span class="ptag alt">반응형 웹</span><span class="ptag alt">데이터 표준화</span></div>
+        <h3>결제수단별 매출전표 전면 개편</h3>
+        <div class="role mono">NHN KCP · PL (기획 총괄) · 2024.03–2025.03</div>
+        <p>PC 전용 ActiveX 팝업 구조를 반응형 웹으로 전환. 결제수단별로 제각각이던 UI·데이터 구조를 표준화하고, 국·영문 전환과 PDF·이미지 다운로드를 신설했습니다.</p>
+      </div>
+      <div class="proj-metrics">
+        <div class="metric"><div class="mn">CS 20%↓</div><div class="ml">전표 확인 문의 감소</div></div>
+        <div class="metric v"><div class="mn">PC + MO</div><div class="ml">반응형 통합 전표</div></div>
+      </div>
+    </div>
+
+    <div class="proj reveal">
+      <div class="proj-no">03</div>
+      <div>
+        <div class="proj-tags"><span class="ptag">정산</span><span class="ptag alt">UX 개선</span><span class="ptag alt">VoC 분석</span></div>
+        <h3>파트너관리자 정산달력 고도화</h3>
+        <div class="role mono">NHN KCP · 기획 담당 · 2025.01</div>
+        <p>결제수단별 정산 마감일자를 달력 UI에 직접 표기하고, 예상금액·마감일·실정산금액을 한 화면에서 보는 요약 모달을 신설. Front↔Admin 정산 데이터 정합성 QA를 리딩했습니다.</p>
+      </div>
+      <div class="proj-metrics">
+        <div class="metric"><div class="mn">VoC 15%↓</div><div class="ml">단순 정산 문의 감소</div></div>
+        <div class="metric c"><div class="mn">One-view</div><div class="ml">정산 정보 통합 조회</div></div>
+      </div>
+    </div>
+
+    <div class="proj reveal">
+      <div class="proj-no">04</div>
+      <div>
+        <div class="proj-tags"><span class="ptag">핀테크 연동</span><span class="ptag alt">API</span><span class="ptag alt">선불결제</span></div>
+        <h3>BBQ 선불결제 코드발급·연동 시스템</h3>
+        <div class="role mono">NHN KCP · 기획 담당 · 2024</div>
+        <p>기존 PG 계약 프로세스와 동일한 흐름으로 선불가맹점 코드발급을 내재화. 업체코드·사이트코드 발급과 선불관리자 API 데이터 전송 로직을 설계해 담당자 운영 편의성을 높였습니다.</p>
+      </div>
+      <div class="proj-metrics">
+        <div class="metric"><div class="mn">2,000+</div><div class="ml">가맹점 계약 체결</div></div>
+        <div class="metric v"><div class="mn">내재화</div><div class="ml">코드발급 프로세스</div></div>
+      </div>
+    </div>
+
+    <div class="proj reveal">
+      <div class="proj-no">05</div>
+      <div>
+        <div class="proj-tags"><span class="ptag">에듀테크</span><span class="ptag alt">PO</span><span class="ptag alt">게이미피케이션</span></div>
+        <h3>AI 세종대왕 국어문법 · 외 에듀테크 기획</h3>
+        <div class="role mono">㈜천재교과서 · PO / PL · 2021–2023</div>
+        <p>B-IRT AI 모델 기반 문항 선별과 레벨·뱃지·랭킹 게임화 요소를 기획. 밀크T고등 선생님홈 UI/UX 리뉴얼, AI 매일 VOCA 등 다수 서비스를 0→1로 설계했습니다.</p>
+      </div>
+      <div class="proj-metrics">
+        <div class="metric"><div class="mn">MAU 2,000</div><div class="ml">출시 3개월 활성</div></div>
+        <div class="metric c"><div class="mn">PV 15%↑</div><div class="ml">선생님홈 리뉴얼</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--ink-2)">
+  <div class="wrap">
+    <div class="eyebrow reveal">Experience</div>
+    <h2 class="sec-title reveal">경력</h2>
+    <p class="sec-sub reveal">에듀테크 웹기획에서 시작해 결제·금융 도메인으로.</p>
+    <div class="tl">
+      <div class="tl-item now reveal">
+        <div class="tl-date mono">2023.10 — 현재</div>
+        <h3>NHN KCP · PG운영실 서비스기획팀</h3>
+        <div class="org">대리 · 서비스기획자</div>
+        <p>AML/KYC 규제 대응, 매출전표·정산 시스템, 파트너관리자 영문화 등 결제 인프라 기반 서비스 기획을 담당. PL/PO로 다수 프로젝트의 정책·일정을 총괄하고 있습니다.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date mono">2021.03 — 2023.10</div>
+        <h3>㈜천재교과서 · IT기획부문 웹기획팀</h3>
+        <div class="org">사원 · 웹/서비스 기획자</div>
+        <p>AI 기반 학습 서비스와 게이미피케이션 신규 서비스를 0→1로 기획. GA 데이터 분석 기반 UI/UX 개선과 Admin 시스템 설계를 담당했습니다.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date mono">2018 — 2021</div>
+        <h3>인턴 · 초기 커리어</h3>
+        <div class="org">Hitachi-LG Data Storage · ㈜인크루트</div>
+        <p>데이터 스토리지와 HR 플랫폼 환경에서 서비스 기획의 기초를 다졌습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="justify-content:center">Get in touch</div>
+    <h2 class="reveal">함께 일할<br><span class="lime">기회를 찾고</span> 있습니다</h2>
+    <p class="reveal">결제·금융·핀테크 도메인에서 새로운 도전을 준비하고 있습니다. 편하게 연락 주세요.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:your-email@example.com" class="btn btn-primary">이메일 보내기 →</a>
+      <a href="#" class="btn btn-ghost">이력서 / 포트폴리오 PDF</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <span class="mono">© 2026 이정소 · LEE JEONGSO</span>
+    <span class="mono">Designed &amp; built with care</span>
+  </div>
+</footer>
+
+<script>
+// nav border on scroll
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay=(i%5*60)+'ms';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
